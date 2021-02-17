@@ -1,16 +1,12 @@
 import { takeLatest, all } from "redux-saga/effects";
 
-/* ------------- Types ------------- */
-import { AuthTypes } from "../models/auth";
-import { MainTypes } from "../models/main";
-/* ------------- Sagas ------------- */
-
-import { getData } from "./AuthSagas";
+import * as AuthGenerators from "./AuthSagas";
+// import * as MainGenerators from "./MainSagas";
 
 export default function* rootSaga() {
   yield all([
     // AUTH
-    takeLatest(AuthTypes.GET_DATA, getData),
+    ...[takeLatest("GET_DATA", AuthGenerators.getData)],
     // MAIN
   ]);
 }
